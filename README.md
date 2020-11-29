@@ -10,6 +10,9 @@ If no masscan options are passed to the script, it will instead use the default 
 -p1-65535 -oG masscan.log --rate=500
 ```
 
+* 2020.11.29
+filter blank IP
+
 Example Usage
 =============
 [![asciicast](https://asciinema.org/a/269108.svg)](https://asciinema.org/a/269108)
