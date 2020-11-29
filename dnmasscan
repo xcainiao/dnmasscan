@@ -24,8 +24,11 @@ while read domain; do
    dns_output="$dns_output=\n"
 
   while read address; do
-    dns_output="$dns_output$address\n"
-    ip_addresses="$ip_addresses$address,"
+    if [ $address ]; then
+      echo $address
+      dns_output="$dns_output$address\n"
+      ip_addresses="$ip_addresses$address,"
+    fi
   done <<< "$dig_results"
 
   dns_output="$dns_output\n"
@@ -44,5 +47,6 @@ if [ "$#" -eq 2 ]; then
   masscan -p1-65535 -oG masscan.log --rate=500 "$ip_addresses"
 else
   echo "------------------------"
+  echo $ip_addresses
   masscan "${@:3}" "$ip_addresses"
 fi
